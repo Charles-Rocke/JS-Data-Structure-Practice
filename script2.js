@@ -222,3 +222,8 @@ const books = [
     highlighted: true,
   },
 ];
+
+// console.log(books.length);   8
+const [firstBook, secondBook] = books;
+const [, , thirdBook] = books;
+console.log(thirdBook);
