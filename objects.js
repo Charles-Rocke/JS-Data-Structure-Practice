@@ -228,9 +228,60 @@ const books = [
  */
 
 // 2.1 Destructure the first book object from the books array into variables called title, author and ISBN
-const { title, author, ISBN } = books[0];
-console.log(title, author, ISBN);
+// const { title, author, ISBN } = books[0];
+// console.log(title, author, ISBN);
 
 // 2.2 Each book object has the keywords property. Destructure the first book object from the books array into a variable called tags. The tags variable should be assigned with the value of the keywords property.
 const { keywords: tags } = books[0];
 console.log(tags);
+
+// 2.3 The seventh book from the books array is missing the programmingLanguage property. Destructure the seventh book object (books[6]) into variables called language and programmingLanguage. Assign the programmingLanguage variable with a default value of 'unknown'
+const { language, programmingLanguage = 'unknown' } = books[6];
+console.log(language, programmingLanguage);
+
+// 2.4 Below are two variables called bookTitle and bookAuthor. Reassign them with the values of the title and author properties of the first book object from the books array.
+let bookTitle = 'unknown';
+let bookAuthor = 'unknown';
+// Wrapping the destructuring assignment in parentheses makes it a valid expression.
+({ title: bookTitle, author: bookAuthor } = books[0]);
+console.log(bookTitle, bookAuthor);
+
+// more examples for 2.4
+// Arithmetic Expression
+let result = (2 + 3) * 4; // Parentheses change the order of operations.
+
+// Function Call with Assignment
+let a, b;
+(a = 1), (b = 2); // Parenthesized assignment expression, multiple assignments within parentheses.
+console.log(a, b); // Output: 1 2
+
+// Arrow Functions Returning Objects
+const createBook = () => ({ title: '1984', author: 'George Orwell' }); // Parentheses needed to return an object literal.
+const book = createBook();
+console.log(book); // Output: { title: '1984', author: 'George Orwell' }
+
+/* 2.5 Each book object has a deeply nested rating property as illustrated below:
+
+{
+  title: 'Algorithms',
+  ...
+  thirdParty: {
+    goodreads: {
+      rating: 4.41,    // <-- HERE
+      ratingsCount: 1733,
+      reviewsCount: 63,
+      fiveStarRatingCount: 976,
+      oneStarRatingCount: 13
+    }
+  }
+},
+Destructure the first book object from the books array into a variable called bookRating. In the result of your destructuring, the bookRating variable should be assigned with the value of the book[0].thirdParty.goodreads.rating property.
+
+Please do most of the work on the left side of the assignment operator: const ... = books[0];
+*/
+const {
+  thirdParty: {
+    goodreads: { rating: bookRating },
+  },
+} = books[0];
+console.log(bookRating);
